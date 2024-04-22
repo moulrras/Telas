@@ -1,23 +1,34 @@
-import Classes.Clientes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaPrincipal {
+public class Tela {
 
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField txtCpf;
     private JTextField txtID;
+    private JTextField txtNome;
+    private JTextField txtCpf;
     private JTextField txtEmail;
     private JButton btnGravar;
-    private JLabel lblNome;
-    private JLabel lblCpf;
-    private JLabel lblID;
-    private JLabel lblEmail;
-    private JTextField txtNome;
 
-    public TelaPrincipal() {
+    public Tela() {
+        JFrame frame = new JFrame("Tela Principal");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel lblID = new JLabel("ID:");
+        txtID = new JTextField(10);
+
+        JLabel lblNome = new JLabel("Nome:");
+        txtNome = new JTextField(20);
+
+        JLabel lblCpf = new JLabel("CPF:");
+        txtCpf = new JTextField(14);
+
+        JLabel lblEmail = new JLabel("Email:");
+        txtEmail = new JTextField(20);
+        
+        btnGravar = new JButton("Gravar");
+
         btnGravar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,17 +37,33 @@ public class TelaPrincipal {
                 String cpf = txtCpf.getText();
                 String email = txtEmail.getText();
 
-                Clientes cli1 = new Clientes();
-                cli1.setId(id);
-                cli1.setNome(nome);
-                cli1.setCpf(cpf);
-                cli1.setEmail(email);
-
                 JOptionPane.showMessageDialog(null,
-                        "ID: " + cli1.getId() + "\n" +
-                        "Nome: " + cli1.getNome() + "\n" +
-                        "CPF: " + cli1.getCpf() + "\n" +
-                        "Email: " + cli1.getEmail());
+                        "ID: " + id + "\n" +
+                                "Nome: " + nome + "\n" +
+                                "CPF: " + cpf + "\n" +
+                                "Email: " + email);
+            }
+        });
+
+        panel1 = new JPanel();
+        panel1.add(lblID);
+        panel1.add(txtID);
+        panel1.add(lblNome);
+        panel1.add(txtNome);
+        panel1.add(lblCpf);
+        panel1.add(txtCpf);
+        panel1.add(lblEmail);
+        panel1.add(txtEmail);
+        panel1.add(btnGravar);
+        frame.add(panel1);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Tela();
             }
         });
     }
